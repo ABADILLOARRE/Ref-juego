@@ -34,31 +34,31 @@ restartImg = loadImage("assets/restart.png")
 function setup(){
 
   createCanvas(400,400)
-//background image
+// Imagen de fondo
 bg = createSprite(165,485,1,1);
 bg.addImage(bgImg);
 bg.scale = 1.3
 
 
-//creating top and bottom grounds
+// Creando los terrenos superior e inferior
 bottomGround = createSprite(200,390,800,20);
 bottomGround.visible = false;
 
 topGround = createSprite(200,10,800,20);
 topGround.visible = false;
       
-//creating balloon     
+// Creando el globo
 balloon = createSprite(100,200,20,50);
 balloon.addAnimation("balloon",balloonImg);
 balloon.scale = 0.2;
 balloon.debug = true;
 
-//initialising groups
+// Inicializando grupos
 topObstaclesGroup = new Group();
 bottomObstaclesGroup = new Group();
 barGroup = new Group();
 
-//creating game over and restart sprites
+// Creando los sprites de fin del juego y reiniciar
 gameOver = createSprite(220,200);
 restart = createSprite(220,240);
 gameOver.addImage(gameOverImg);
@@ -77,24 +77,24 @@ function draw() {
 
   if(gameState === PLAY){
 
-    //making the hot air balloon jump
+    // Hacer saltar al globo aerostático
     if(keyDown("space")) {
       balloon.velocityY = -6 ;
       
     }
 
-    //adding gravity
+    // Agregando gravedad
      balloon.velocityY = balloon.velocityY + 2;
 
      
     Bar();
 
-    //spawning top and bottom obstacles
+    // Generando obstáculos superiores e inferiores
     spawnObstaclesTop();
     spawnObstaclesBottom();
 
-//condition for END state
-//Write a condition for balloon touching the obstacles(bottomObstaclesGroup,topGround,bottomGround,topObstaclesGroup)
+// Condición para el estado "END"
+// Escribe una condición para el globo tocando los obstáculos (bottomObstaclesGroup,topGround,bottomGround,topObstaclesGroup)
 if()
 {
 
@@ -110,20 +110,20 @@ gameState = END;
           restart.visible = true;
           restart.depth = restart.depth+1
           
-          //all sprites should stop moving in the END state
+          // Todos los sprites deben dejar de moverse en el estado "END"
           balloon.velocityX = 0;
           balloon.velocityY = 0;
           topObstaclesGroup.setVelocityXEach(0);
           bottomObstaclesGroup.setVelocityXEach(0);
           barGroup.setVelocityXEach(0);
   
-          //setting -1 lifetime so that obstacles don't disappear in the END state
+          // Estableciendo el tiempo de vida en -1 para que los obstáculos no desaparezcan en el estado "END"
           topObstaclesGroup.setLifetimeEach(-1);
           bottomObstaclesGroup.setLifetimeEach(-1);
          
           balloon.y = 200;
           
-          //resetting the game
+          // Reiniciando el juego
           if(mousePressedOver(restart)) 
           {
                 reset();
@@ -137,9 +137,9 @@ gameState = END;
 
 function reset()
 {
-  //Change the gameState to play
-  //Disable gameOver and restart button
-  //Destroy topObstaclesGroup and bottomObstaclesGroup
+  // Cambia el estado de juego - gameState a "play"
+  // Deshabilita "gameOver" y el botón de reinicio
+  // Destruye topObstaclesGroup y bottomObstaclesGroup
  
 
   score=0;
@@ -156,10 +156,10 @@ function spawnObstaclesTop()
 obstacleTop.scale = 0.1;
 obstacleTop.velocityX = -4;
 
-//random y positions for top obstacles
+// Posición Y aleatoria para obstáculos superiores
 obstacleTop.y = Math.round(random(10,100));
 
-//generate random top obstacles
+// Generando obstáculos aleatorios superiores
 var rand = Math.round(random(1,2));
 switch(rand) {
   case 1: obstacleTop.addImage(obsTop1);
@@ -169,7 +169,7 @@ switch(rand) {
   default: break;
 }
 
- //assign lifetime to the variable
+ // Asignando un tiempo de vida a la variable
 obstacleTop.lifetime = 100;
 
 balloon.depth = balloon.depth + 1;
@@ -193,7 +193,7 @@ function spawnObstaclesBottom()
     
     
 
-   //generate random bottom obstacles
+   // Generando obstáculos aleatorios inferiores
     var rand = Math.round(random(1,3));
     switch(rand) {
       case 1: obstacleBottom.addImage(obsBottom1);
@@ -205,7 +205,7 @@ function spawnObstaclesBottom()
       default: break;
     }
 
-     //assign lifetime to the variable
+     // Asignando un tiempo de vida a la variable
    obstacleBottom.lifetime = 100;
     
    balloon.depth = balloon.depth + 1;
@@ -236,12 +236,12 @@ function Score()
 {
          if(balloon.isTouching(barGroup))
          {
-           //increment the score by 1
+           // Aumenta la puntuación en 1
          }
         textFont("algerian");
         textSize(30);
         fill("yellow");
-        //Display the score 
+        // Muestra la puntuación
        
   
 }
