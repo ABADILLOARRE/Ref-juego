@@ -11,8 +11,8 @@ else if (typeof exports === 'object')
 factory(require('@code-dot-org/p5'));
 else
 factory(root.p5);
-}(this, function(p5) {
-/**
+}(this, function(p5) { 
+/** 
  * p5.play is a library for p5.js to facilitate the creation of games and gamelike
  * projects.
  *

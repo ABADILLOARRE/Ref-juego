@@ -11,7 +11,7 @@
 exports.argument = function(predicate, message) {
     if (!predicate) {
         throw new Error(message);
-    }
+    } 
 };
 
 // Precondition function that checks if the given assertion is true.
